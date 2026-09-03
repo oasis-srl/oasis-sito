@@ -16,6 +16,7 @@ oasis-sito/
 ├── divulgazione.html
 ├── contatti.html
 ├── grazie.html          → pagina di conferma dopo l'invio del form
+├── privacy.html         → informativa privacy e cookie
 └── assets/
     ├── css/style.css       → Foglio di stile condiviso
     ├── js/menu.js          → Menu, topbar e footer condivisi

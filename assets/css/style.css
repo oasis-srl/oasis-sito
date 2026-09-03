@@ -2373,3 +2373,57 @@ nav ul li.has-dropdown .dropdown a small {
 /* ---- Form contatti (FormSubmit) ---- */
 .contact-form button.btn { border: none; cursor: pointer; font-family: inherit; }
 .contact-form input:invalid:not(:placeholder-shown) { border-color: var(--red, #B8312A); }
+
+/* ---- Pagina legale (privacy) ---- */
+.legal-text { max-width: 780px; }
+.legal-text h2 { font-family: 'Fraunces', serif; font-weight: 500; font-size: 26px; margin: 44px 0 14px; }
+.legal-text h2:first-child { margin-top: 0; }
+.legal-text h3 { font-size: 17px; font-weight: 600; margin: 26px 0 10px; }
+.legal-text p, .legal-text li { font-size: 16px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 14px; }
+.legal-text ul { padding-left: 22px; margin-bottom: 14px; }
+.legal-text a { color: var(--accent); }
+.footer-bottom a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.25); }
+.footer-bottom a:hover { border-color: var(--sun); }
+
+/* ---- Badge premio su card progetto ---- */
+.project-image { position: relative; }
+.project-award {
+  position: absolute; left: 14px; bottom: 14px;
+  background: var(--sun, #E8B84B); color: #1a1a1a;
+  font-size: 12px; font-weight: 600; letter-spacing: .3px;
+  padding: 7px 13px; border-radius: 3px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+.project-award-note {
+  margin-top: 16px; padding: 16px 18px;
+  background: rgba(232,184,75,.12);
+  border-left: 3px solid var(--sun, #E8B84B);
+  border-radius: 3px; font-size: 14px; line-height: 1.6;
+}
+.project-award-note a { display: inline-block; margin-top: 6px; color: var(--accent-deep, #2d6a4f); font-weight: 500; text-decoration: underline; }
+
+/* ---- Tabella certificazioni ISO (home) ---- */
+.iso-cert-block { margin-top: 56px; }
+.iso-cert-head { margin-bottom: 24px; }
+.iso-cert-head h3 { font-family: 'Fraunces', serif; font-weight: 500; font-size: 28px; margin-top: 8px; }
+.iso-cert-table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid rgba(0,0,0,.08); }
+.iso-cert-table th, .iso-cert-table td { text-align: left; padding: 16px 20px; border-bottom: 1px solid rgba(0,0,0,.08); font-size: 15px; line-height: 1.55; vertical-align: top; }
+.iso-cert-table thead th { background: var(--paper-warm, #f5f1e8); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; }
+.iso-cert-table tbody tr:last-child td { border-bottom: none; }
+.iso-cert-table td:first-child { color: var(--accent-deep, #2d6a4f); white-space: nowrap; }
+.iso-cert-table td:nth-child(2) { white-space: nowrap; color: var(--ink-soft); }
+@media (max-width: 640px) {
+  .iso-cert-table, .iso-cert-table thead, .iso-cert-table tbody, .iso-cert-table tr, .iso-cert-table td { display: block; }
+  .iso-cert-table thead { display: none; }
+  .iso-cert-table tr { margin-bottom: 14px; border: 1px solid rgba(0,0,0,.1); }
+  .iso-cert-table td { border-bottom: 1px solid rgba(0,0,0,.06); }
+}
+
+/* ---- Fatti sintetici nelle schede progetto ---- */
+.project-facts { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 4px; }
+.project-facts span { background: var(--paper-warm, #f5f1e8); border-radius: 3px; padding: 8px 14px; font-size: 13px; color: var(--ink-soft); }
+.project-facts strong { color: var(--accent-deep, #2d6a4f); font-size: 16px; }
+
+/* ---- Profili pubblicazioni ---- */
+.pub-profiles { margin-top: 36px; padding-top: 28px; border-top: 1px solid rgba(0,0,0,.1); }
+.pub-profiles p { font-size: 15px; color: var(--ink-soft); margin-bottom: 18px; }

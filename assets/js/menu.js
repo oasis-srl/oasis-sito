@@ -101,7 +101,7 @@
     </div>
     <div class="footer-bottom">
       <div>© 2026 OASIS srl · Tutti i diritti riservati</div>
-      <div>Privacy · Cookie · Mappa del sito</div>
+      <div><a href="privacy.html">Privacy &amp; Cookie</a></div>
     </div>
   </div>
 </footer>`;
