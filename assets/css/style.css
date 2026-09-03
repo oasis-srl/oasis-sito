@@ -1899,11 +1899,11 @@ footer .brand-block p { color: rgba(247,244,237,.65); margin-top: 16px; max-widt
 }
 .credentials-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 0;
 }
 .cred-item {
-  padding: 0 32px;
+  padding: 0 24px;
   border-left: 1px solid rgba(255,255,255,.15);
 }
 .cred-item:first-child { border-left: none; padding-left: 0; }
@@ -2085,6 +2085,10 @@ footer .brand-block p { color: rgba(247,244,237,.65); margin-top: 16px; max-widt
 .home-final-cta h2 em { font-style: italic; color: var(--accent); }
 .home-final-cta p { color: var(--ink-soft); max-width: 560px; margin: 0 auto 40px; font-size: 17px; }
 
+@media (max-width: 1180px) and (min-width: 981px) {
+  .credentials-grid { grid-template-columns: repeat(3, 1fr); gap: 36px 0; }
+  .credentials-grid .cred-item:nth-child(4) { border-left: none; padding-left: 0; }
+}
 @media (max-width: 980px) {
   .home-hero-grid, .home-why-grid, .home-torymus-grid { grid-template-columns: 1fr; gap: 50px; }
   .credentials-grid { grid-template-columns: repeat(2, 1fr); gap: 40px 0; }
@@ -2427,3 +2431,31 @@ nav ul li.has-dropdown .dropdown a small {
 /* ---- Profili pubblicazioni ---- */
 .pub-profiles { margin-top: 36px; padding-top: 28px; border-top: 1px solid rgba(0,0,0,.1); }
 .pub-profiles p { font-size: 15px; color: var(--ink-soft); margin-bottom: 18px; }
+
+/* ---- Copertina grafica per progetti senza foto ---- */
+.project-cover-graphic {
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 24px;
+  position: relative; overflow: hidden;
+}
+.project-cover-graphic .cover-acronym {
+  font-family: 'Fraunces', serif; font-weight: 500;
+  font-size: 30px; line-height: 1.15; color: #fff;
+  letter-spacing: .5px; position: relative; z-index: 1;
+}
+.cover-wellness {
+  background: linear-gradient(135deg, #6a8f3c 0%, var(--accent-deep) 100%);
+}
+.cover-wellness::after {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle at 78% 22%, rgba(244,196,48,.35), transparent 42%);
+}
+
+/* ---- Intestazioni di gruppo nella pagina Progetti ---- */
+.projects-group-head { margin: 56px 0 24px; padding-bottom: 14px; border-bottom: 2px solid var(--accent); }
+.projects-group-head:first-of-type { margin-top: 8px; }
+.projects-group-head h3 {
+  font-family: 'Fraunces', serif; font-weight: 500; font-size: 30px;
+  color: var(--accent-deep); margin-bottom: 6px;
+}
+.projects-group-head p { font-size: 15px; color: var(--ink-soft); max-width: 640px; }

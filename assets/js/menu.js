@@ -42,7 +42,6 @@
           <ul class="dropdown">
             <li><a href="divulgazione.html#pubblicazioni">Pubblicazioni<small>Riviste · Atti scientifici</small></a></li>
             <li><a href="divulgazione.html#convegni">Convegni &amp; Eventi<small>Relatori · Presenze</small></a></li>
-            <li><a href="divulgazione.html#formazione">Formazione<small>Corsi ECM · Aula &amp; campo</small></a></li>
           </ul>
         </li>
         <li class="cta-li"><a href="contatti.html" class="cta">Contattaci</a></li>
