@@ -2418,7 +2418,7 @@ nav ul li.has-dropdown .dropdown a small {
   border-left: 3px solid var(--sun, #E8B84B);
   border-radius: 3px; font-size: 14px; line-height: 1.6;
 }
-.project-award-note a { display: inline-block; margin-top: 6px; color: var(--accent-deep, #2d6a4f); font-weight: 500; text-decoration: underline; }
+.project-award-note a { display: block; margin-top: 6px; color: var(--accent-deep, #2d6a4f); font-weight: 500; text-decoration: underline; }
 
 /* ---- Tabella certificazioni ISO (home) ---- */
 .iso-cert-block { margin-top: 56px; }
@@ -2472,4 +2472,35 @@ nav ul li.has-dropdown .dropdown a small {
   font-family: 'Fraunces', serif; font-weight: 500; font-size: 30px;
   color: var(--accent-deep); margin-bottom: 6px;
 }
-.projects-group-head p { font-size: 15px; color: var(--ink-soft); max-width: 640px; }
+.projects-group-head p { font-size: 15px; color: var(--ink-soft); max-width: 900px; }
+
+/* ---- Sotto-intestazioni e comitato (Chi siamo) ---- */
+.team-subhead { margin: 60px 0 28px; }
+.team-subhead h3 { font-family: 'Fraunces', serif; font-weight: 500; font-size: 28px; margin-top: 6px; }
+.team-subhead p { font-size: 15px; color: var(--ink-soft); max-width: 640px; margin-top: 12px; }
+.committee-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.committee-card {
+  background: var(--paper-warm); border-radius: 4px; padding: 22px 24px;
+  border-left: 3px solid var(--accent);
+}
+.committee-card h4 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+.committee-card .team-role { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+@media (max-width: 900px) { .committee-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .committee-grid { grid-template-columns: 1fr; } }
+
+/* ---- Link download scheda progetto ---- */
+.project-download { margin-top: 14px; }
+.project-download a {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 600; color: var(--accent-deep);
+  background: var(--paper-warm); padding: 9px 16px; border-radius: 3px;
+  text-decoration: none; transition: all .15s ease;
+}
+.project-download a:hover { background: var(--accent); color: #fff; }
+
+/* ---- Blocco missione Cile (Torymus) ---- */
+.cile-block { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.cile-photo img { width: 100%; height: 100%; max-height: 380px; object-fit: cover; border-radius: 4px; display: block; }
+.cile-text h3 { font-family: 'Fraunces', serif; font-weight: 500; font-size: 30px; margin: 8px 0 16px; }
+.cile-text p { color: var(--ink-soft); font-size: 16px; line-height: 1.7; }
+@media (max-width: 860px) { .cile-block { grid-template-columns: 1fr; } }
