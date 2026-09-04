@@ -123,5 +123,16 @@
         a.classList.add('active');
       }
     });
+
+    // Effetto "scrolled" sulla barra fissa: si assottiglia e prende ombra
+    var header = document.querySelector('header.main');
+    if (header) {
+      var onScroll = function() {
+        if (window.scrollY > 20) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
   });
 })();

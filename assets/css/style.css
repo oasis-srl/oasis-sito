@@ -35,11 +35,21 @@ body {
 .topbar-info span::before { content: "·"; margin-right: 8px; opacity: .5; }
 .topbar-info span:first-child::before { content: ""; margin: 0; }
 
+#header-slot {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
 header.main {
   padding: 22px 0;
   border-bottom: 1px solid var(--rule);
   background: var(--paper);
   z-index: 50;
+  transition: padding .2s ease, box-shadow .2s ease;
+}
+header.main.scrolled {
+  padding: 12px 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,.08);
 }
 header.main .container { display: flex; justify-content: space-between; align-items: center; }
 .logo { display: flex; align-items: center; text-decoration: none; }
@@ -2110,7 +2120,9 @@ nav ul li.has-dropdown .dropdown {
   position: absolute;
   top: 100%;
   left: -20px;
-  min-width: 240px;
+  display: block;
+  width: max-content;
+  min-width: 260px;
   background: var(--paper);
   border: 1px solid var(--rule);
   border-top: 2px solid var(--accent);
@@ -2132,16 +2144,18 @@ nav ul li.has-dropdown:focus-within .dropdown {
 }
 nav ul li.has-dropdown .dropdown li {
   display: block;
+  width: 100%;
   margin: 0;
 }
 nav ul li.has-dropdown .dropdown a {
   display: block;
-  padding: 12px 24px;
+  padding: 12px 28px;
   font-size: 14px;
   font-weight: 500;
   color: var(--ink);
   border-left: 3px solid transparent;
   transition: all .15s ease;
+  white-space: nowrap;
 }
 nav ul li.has-dropdown .dropdown a:hover {
   background: var(--paper-warm);
