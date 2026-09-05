@@ -22,10 +22,15 @@
 </div>`;
   const HEADER = `<header class="main">
   <div class="container">
-    <a href="index.html" class="logo" aria-label="OASIS srl — Home">
+    <a href="index.html" class="logo" aria-label="OASIS S.r.l. — Home">
       <div class="logo-mark">
-        <img src="assets/images/logo-oasis.jpeg" alt="OASIS S.r.l. — Ricerca &amp; Sviluppo">
+        <img src="assets/images/logo-oasis.png" alt="">
       </div>
+      <span class="logo-rule" aria-hidden="true"></span>
+      <span class="logo-word">
+        <span class="logo-name">OASIS S.r.l.</span>
+        <span class="logo-sub">Ricerca &amp; Sviluppo</span>
+      </span>
     </a>
     <nav id="main-nav">
       <ul>
@@ -60,7 +65,7 @@
       <div class="brand-block">
         <div class="logo footer-logo">
           <div class="logo-mark">
-            <img src="assets/images/logo-oasis.jpeg" alt="OASIS S.r.l.">
+            <img src="assets/images/logo-oasis.png" alt="OASIS S.r.l.">
           </div>
         </div>
         <p>Organismo di Ricerca senza scopo di lucro · PMI Innovativa · Centro di Ricerca e Sviluppo dal 2004.</p>

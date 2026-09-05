@@ -56,6 +56,40 @@ header.main .container { display: flex; justify-content: space-between; align-it
 .logo-mark { height: 56px; flex-shrink: 0; display: block; }
 .logo-mark img { height: 100%; width: auto; display: block; }
 
+/* Nome dell'azienda accanto al simbolo */
+.logo { gap: 14px; }
+.logo-rule { width: 1px; height: 38px; background: var(--rule); flex-shrink: 0; }
+.logo-word { display: flex; flex-direction: column; line-height: 1; }
+.logo-name {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: .5px;
+  white-space: nowrap;
+}
+.logo-sub {
+  font-size: 9.5px;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-top: 5px;
+  white-space: nowrap;
+}
+footer .logo-rule, footer .logo-word { display: none; }
+@media (max-width: 980px) {
+  .logo { gap: 11px; }
+  .logo-rule { height: 32px; }
+  .logo-name { font-size: 20px; }
+  .logo-sub { font-size: 8.5px; letter-spacing: 1.8px; margin-top: 4px; }
+}
+@media (max-width: 430px) {
+  .logo-mark { height: 44px; }
+  .logo-sub { display: none; }
+  .logo-name { font-size: 18px; }
+}
+
 nav ul { list-style: none; display: flex; gap: 36px; align-items: center; }
 nav a {
   text-decoration: none;
