@@ -161,6 +161,25 @@
       });
     }
 
+    // Video YouTube: il player si apre dentro la pagina invece che su YouTube.
+    // Niente viene richiesto ai server di Google finche' non si clicca su play,
+    // quindi la pagina resta senza cookie di terze parti al caricamento.
+    document.querySelectorAll('a.video-thumb').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        var m = (a.getAttribute('href') || '').match(/(?:v=|youtu\.be\/|embed\/)([A-Za-z0-9_-]{11})/);
+        if (!m) return;                       // link inatteso: lascia il comportamento normale
+        e.preventDefault();
+        var f = document.createElement('iframe');
+        f.className = 'video-player';
+        f.src = 'https://www.youtube-nocookie.com/embed/' + m[1] + '?autoplay=1&rel=0';
+        f.title = a.getAttribute('title') || 'Video YouTube';
+        f.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+        f.setAttribute('allowfullscreen', '');
+        f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+        a.parentNode.replaceChild(f, a);
+      });
+    });
+
     // Effetto "scrolled" sulla barra fissa: si assottiglia e prende ombra
     var header = document.querySelector('header.main');
     if (header) {
