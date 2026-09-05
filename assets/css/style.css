@@ -1705,6 +1705,7 @@ footer .brand-block p { color: rgba(247,244,237,.65); margin-top: 16px; max-widt
   height: 100%;
   object-fit: cover;
   display: block;
+  z-index: 2;
   transition: transform .35s ease, opacity .2s ease;
 }
 .video-thumb::before {
@@ -2301,7 +2302,7 @@ nav ul li.has-dropdown .dropdown a small {
   border: 0;
   background: #000;
 }
-.project-image > .video-player { height: 100%; min-height: 280px; aspect-ratio: auto; }
+.project-image > .video-player { height: auto; align-self: stretch; min-height: 280px; aspect-ratio: auto; }
 
 /* Fix per video-thumb dentro card progetto */
 .project-image .video-thumb,
@@ -2314,6 +2315,7 @@ nav ul li.has-dropdown .dropdown a small {
 .project-image > .video-thumb {
   padding-bottom: 0;
   height: auto;
+  align-self: stretch;
   min-height: 280px;
   position: relative;
 }
