@@ -39,13 +39,7 @@
           </ul>
         </li>
         <li><a href="progetti.html">Progetti</a></li>
-        <li class="has-dropdown">
-          <a href="divulgazione.html">Divulgazione</a>
-          <ul class="dropdown">
-            <li><a href="divulgazione.html#pubblicazioni">Pubblicazioni<small>Riviste · Atti scientifici</small></a></li>
-            <li><a href="divulgazione.html#convegni">Convegni &amp; Eventi<small>Relatori · Presenze</small></a></li>
-          </ul>
-        </li>
+        <li><a href="divulgazione.html">Divulgazione</a></li>
         <li class="cta-li"><a href="contatti.html" class="cta">Contattaci</a></li>
       </ul>
     </nav>
