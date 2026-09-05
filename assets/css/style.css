@@ -1413,6 +1413,7 @@ footer .brand-block p { color: rgba(247,244,237,.65); margin-top: 16px; max-widt
   border-color: var(--accent);
   box-shadow: 0 20px 40px -20px rgba(29,77,62,.15);
 }
+.project-card.no-image { grid-template-columns: 1fr; }
 .project-card.placeholder {
   grid-template-columns: 1fr;
   padding: 40px;

@@ -38,7 +38,13 @@
             <li><a href="torymus.html">Torymus sinensis<small>Controllo biologico del cinipide</small></a></li>
           </ul>
         </li>
-        <li><a href="progetti.html">Progetti</a></li>
+        <li class="has-dropdown">
+          <a href="progetti.html">Progetti &amp; Brevetti</a>
+          <ul class="dropdown">
+            <li><a href="progetti.html">Progetti di ricerca<small>Agroscienze · Digitale · Biomedicale</small></a></li>
+            <li><a href="brevetti.html">Brevetti<small>Privative industriali · UIBM</small></a></li>
+          </ul>
+        </li>
         <li><a href="divulgazione.html">Divulgazione</a></li>
         <li class="cta-li"><a href="contatti.html" class="cta">Contattaci</a></li>
       </ul>
@@ -66,6 +72,7 @@
           <li><a href="servizi.html">Servizi</a></li>
           <li><a href="ricerca-sviluppo.html">Ricerca &amp; Sviluppo</a></li>
           <li><a href="progetti.html">Progetti</a></li>
+          <li><a href="brevetti.html">Brevetti</a></li>
           <li><a href="divulgazione.html">Divulgazione</a></li>
         </ul>
       </div>
