@@ -4,7 +4,7 @@
   <div class="container">
     <div class="topbar-info">
       <span>Organismo di Ricerca riconosciuto</span>
-      <span>PMI Innovativa dal 2004</span>
+      <span>PMI Innovativa</span>
       <span>Certificata ISO 9001 &amp; ISO 14001</span>
     </div>
     <div class="topbar-info">
