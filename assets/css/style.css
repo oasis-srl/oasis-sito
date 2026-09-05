@@ -67,7 +67,7 @@ nav a {
 }
 nav a:hover { color: var(--accent); }
 nav a.current { color: var(--accent); }
-nav a.current::after {
+nav a.current::before {
   content: ""; position: absolute; left: 0; right: 0; bottom: -8px;
   height: 2px; background: var(--accent);
 }
@@ -2552,7 +2552,7 @@ section[id], [id].anchor-target { scroll-margin-top: 110px; }
     padding: 15px 0;
     font-size: 16px;
   }
-  header.main nav a.current::after { display: none; }
+  header.main nav a.current::before { display: none; }
   header.main nav a.current { color: var(--accent); }
   header.main nav ul li.has-dropdown > a::after { content: ""; }
   header.main nav ul li.has-dropdown .dropdown {
