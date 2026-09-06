@@ -161,6 +161,12 @@
       });
     }
 
+    // Le schede progetto con un video prendono la classe is-video, cosi' il CSS
+    // mostra il fotogramma intero e centrato invece di ritagliarlo.
+    document.querySelectorAll('.project-image').forEach(function(im) {
+      if (im.querySelector('.video-thumb')) im.classList.add('is-video');
+    });
+
     // Video YouTube: il player si apre dentro la pagina invece che su YouTube.
     // Niente viene richiesto ai server di Google finche' non si clicca su play,
     // quindi la pagina resta senza cookie di terze parti al caricamento.
