@@ -718,6 +718,8 @@ footer .brand-block p { color: rgba(247,244,237,.65); margin-top: 16px; max-widt
   padding: 44px;
   margin-top: 40px;
 }
+/* Dentro la griglia normativa il riquadro si allinea in alto al testo */
+.about-grid .odr-explainer { margin-top: 0; }
 .odr-explainer h4 {
   font-family: 'Fraunces', serif;
   font-size: 24px;
