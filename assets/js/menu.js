@@ -153,6 +153,7 @@
         <h5>${t.fCont}</h5>
         <ul>
           <li><a href="mailto:segreteria@oasis-srl.it">segreteria@oasis-srl.it</a></li>
+          <li><a href="mailto:oasis@pec.it">PEC oasis@pec.it</a></li>
           <li>P.IVA 02369130642</li>
           <li>SDI KRRH6B9</li>
           <li style="margin-top:14px; padding-top:10px; border-top:1px solid rgba(255,255,255,.12); font-size:12px; color:rgba(247,244,237,.55);">
