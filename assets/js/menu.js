@@ -137,7 +137,7 @@
         <h5>${t.fServ}</h5>
         <ul>
           <li><a href="finanza-agevolata.html">${t.fin}</a></li>
-          <li><a href="ricerca-sviluppo.html">${t.fCredito}</a></li>
+          <li><a href="ricerca-sviluppo.html">${t.rs}</a></li>
           <li><a href="torymus.html">${t.tor}</a></li>
           <li><a href="contatti.html">${t.fLavora}</a></li>
         </ul>
