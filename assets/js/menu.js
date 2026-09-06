@@ -1,11 +1,58 @@
-// menu.js — genera automaticamente topbar, menu e footer di OASIS
+// menu.js — genera topbar, menu e footer di OASIS, in italiano o in inglese
+// a seconda che la pagina si trovi nella cartella /en/.
 (function() {
-  const TOPBAR = `<div class="topbar">
+  var inEN = /\/en\//.test(location.pathname);
+  var A = inEN ? '../' : '';          // prefisso per gli asset (le pagine /en/ stanno un livello sotto)
+
+  // Etichette nelle due lingue
+  var T = {
+    it: {
+      badge1: 'Organismo di Ricerca riconosciuto', badge2: 'PMI Innovativa', badge3: 'Certificata ISO 9001 &amp; ISO 14001',
+      logosub: 'Ricerca &amp; Sviluppo', home: 'Home',
+      chisiamo: 'Chi siamo', servizi: 'Servizi',
+      fin: 'Finanza Agevolata', fins: 'Bandi · Credito R&amp;S · PNRR',
+      rs: 'Ricerca &amp; Sviluppo', rss: 'Progetti scientifici · Credito R&amp;S',
+      tor: 'Torymus sinensis', tors: 'Controllo biologico del cinipide',
+      progetti: 'Progetti &amp; Brevetti', prog: 'Progetti di ricerca', progs: 'Agroscienze · Digitale · Biomedicale',
+      brev: 'Brevetti', brevs: 'Privative industriali · UIBM',
+      divulg: 'Divulgazione', news: 'News', contatti: 'Contattaci',
+      fSite: 'Sito', fServ: 'Servizi', fCert: 'Certificazioni', fCont: 'Contatti',
+      fCredito: "Credito d'imposta R&amp;S", fLavora: 'Lavora con noi',
+      fBrand: 'Organismo di Ricerca senza scopo di lucro · PMI Innovativa · Centro di Ricerca e Sviluppo dal 2004.',
+      fQual: 'Qualità', fAmb: 'Ambiente', fAnag: 'Anagrafe Nazionale Ricerche',
+      fRights: '© 2026 OASIS srl · Tutti i diritti riservati', fPrivacy: 'Privacy &amp; Cookie',
+      langLabel: 'EN', langAria: 'Switch to English', openMenu: 'Apri il menu', closeMenu: 'Chiudi il menu'
+    },
+    en: {
+      badge1: 'Recognised Research Organisation', badge2: 'Innovative SME', badge3: 'ISO 9001 &amp; ISO 14001 certified',
+      logosub: 'Research &amp; Development', home: 'Home',
+      chisiamo: 'About us', servizi: 'Services',
+      fin: 'Subsidised Finance', fins: 'Grants · R&amp;D tax credit · NRRP',
+      rs: 'Research &amp; Development', rss: 'Scientific projects · R&amp;D tax credit',
+      tor: 'Torymus sinensis', tors: 'Biological control of the gall wasp',
+      progetti: 'Projects &amp; Patents', prog: 'Research projects', progs: 'Agro-sciences · Digital · Biomedical',
+      brev: 'Patents', brevs: 'Industrial property · UIBM',
+      divulg: 'Outreach', news: 'News', contatti: 'Contact us',
+      fSite: 'Site', fServ: 'Services', fCert: 'Certifications', fCont: 'Contact',
+      fCredito: 'R&amp;D tax credit', fLavora: 'Work with us',
+      fBrand: 'Non-profit Research Organisation · Innovative SME · Research &amp; Development centre since 2004.',
+      fQual: 'Quality', fAmb: 'Environment', fAnag: 'National Research Registry',
+      fRights: '© 2026 OASIS srl · All rights reserved', fPrivacy: 'Privacy &amp; Cookies',
+      langLabel: 'IT', langAria: 'Passa all’italiano', openMenu: 'Open menu', closeMenu: 'Close menu'
+    }
+  };
+  var t = inEN ? T.en : T.it;
+
+  // Link della bandierina lingua: stessa pagina, cartella dell'altra lingua
+  var currentPage = location.pathname.split('/').pop() || 'index.html';
+  var langHref = inEN ? ('../' + currentPage) : ('en/' + currentPage);
+
+  var TOPBAR = `<div class="topbar">
   <div class="container">
     <div class="topbar-info">
-      <span>Organismo di Ricerca riconosciuto</span>
-      <span>PMI Innovativa</span>
-      <span>Certificata ISO 9001 &amp; ISO 14001</span>
+      <span>${t.badge1}</span>
+      <span>${t.badge2}</span>
+      <span>${t.badge3}</span>
     </div>
     <div class="topbar-info">
       <span>segreteria@oasis-srl.it</span>
@@ -20,106 +67,109 @@
     </div>
   </div>
 </div>`;
-  const HEADER = `<header class="main">
+
+  var HEADER = `<header class="main">
   <div class="container">
-    <a href="index.html" class="logo" aria-label="OASIS S.r.l. — Home">
+    <a href="index.html" class="logo" aria-label="OASIS S.r.l. — ${t.home}">
       <div class="logo-mark">
-        <img src="assets/images/logo-oasis.png" alt="">
+        <img src="${A}assets/images/logo-oasis.png" alt="">
       </div>
       <span class="logo-rule" aria-hidden="true"></span>
       <span class="logo-word">
         <span class="logo-name">OASIS S.r.l.</span>
-        <span class="logo-sub">Ricerca &amp; Sviluppo</span>
+        <span class="logo-sub">${t.logosub}</span>
       </span>
     </a>
     <nav id="main-nav">
       <ul>
-        <li><a href="chi-siamo.html">Chi siamo</a></li>
+        <li><a href="chi-siamo.html">${t.chisiamo}</a></li>
         <li class="has-dropdown">
-          <a href="servizi.html">Servizi</a>
+          <a href="servizi.html">${t.servizi}</a>
           <ul class="dropdown">
-            <li><a href="finanza-agevolata.html">Finanza Agevolata<small>Bandi · Credito R&amp;S · PNRR</small></a></li>
-            <li><a href="ricerca-sviluppo.html">Ricerca &amp; Sviluppo<small>Progetti scientifici · Credito R&amp;S</small></a></li>
-            <li><a href="torymus.html">Torymus sinensis<small>Controllo biologico del cinipide</small></a></li>
+            <li><a href="finanza-agevolata.html">${t.fin}<small>${t.fins}</small></a></li>
+            <li><a href="ricerca-sviluppo.html">${t.rs}<small>${t.rss}</small></a></li>
+            <li><a href="torymus.html">${t.tor}<small>${t.tors}</small></a></li>
           </ul>
         </li>
         <li class="has-dropdown">
-          <a href="progetti.html">Progetti &amp; Brevetti</a>
+          <a href="progetti.html">${t.progetti}</a>
           <ul class="dropdown">
-            <li><a href="progetti.html">Progetti di ricerca<small>Agroscienze · Digitale · Biomedicale</small></a></li>
-            <li><a href="brevetti.html">Brevetti<small>Privative industriali · UIBM</small></a></li>
+            <li><a href="progetti.html">${t.prog}<small>${t.progs}</small></a></li>
+            <li><a href="brevetti.html">${t.brev}<small>${t.brevs}</small></a></li>
           </ul>
         </li>
-        <li><a href="divulgazione.html">Divulgazione</a></li>
-        <li><a href="news.html">News</a></li>
-        <li class="cta-li"><a href="contatti.html" class="cta">Contattaci</a></li>
+        <li><a href="divulgazione.html">${t.divulg}</a></li>
+        <li><a href="news.html">${t.news}</a></li>
+        <li class="cta-li"><a href="contatti.html" class="cta">${t.contatti}</a></li>
+        <li class="lang-li"><a href="${langHref}" class="lang-switch" aria-label="${t.langAria}" hreflang="${inEN ? 'it' : 'en'}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg>${t.langLabel}</a></li>
       </ul>
     </nav>
-    <button class="nav-toggle" type="button" aria-label="Apri il menu" aria-expanded="false" aria-controls="main-nav">
+    <button class="nav-toggle" type="button" aria-label="${t.openMenu}" aria-expanded="false" aria-controls="main-nav">
       <span class="nav-toggle-bars"><span></span><span></span><span></span></span>
     </button>
   </div>
 </header>`;
-  const FOOTER = `<footer>
+
+  var FOOTER = `<footer>
   <div class="container">
     <div class="footer-grid">
       <div class="brand-block">
         <div class="logo footer-logo">
           <div class="logo-mark">
-            <img src="assets/images/logo-oasis.png" alt="OASIS S.r.l.">
+            <img src="${A}assets/images/logo-oasis.png" alt="OASIS S.r.l.">
           </div>
         </div>
-        <p>Organismo di Ricerca senza scopo di lucro · PMI Innovativa · Centro di Ricerca e Sviluppo dal 2004.</p>
+        <p>${t.fBrand}</p>
       </div>
       <div>
-        <h5>Sito</h5>
+        <h5>${t.fSite}</h5>
         <ul>
-          <li><a href="chi-siamo.html">Chi siamo</a></li>
-          <li><a href="servizi.html">Servizi</a></li>
-          <li><a href="ricerca-sviluppo.html">Ricerca &amp; Sviluppo</a></li>
-          <li><a href="progetti.html">Progetti</a></li>
-          <li><a href="brevetti.html">Brevetti</a></li>
-          <li><a href="divulgazione.html">Divulgazione</a></li>
-          <li><a href="news.html">News</a></li>
+          <li><a href="chi-siamo.html">${t.chisiamo}</a></li>
+          <li><a href="servizi.html">${t.servizi}</a></li>
+          <li><a href="ricerca-sviluppo.html">${t.rs}</a></li>
+          <li><a href="progetti.html">${t.prog}</a></li>
+          <li><a href="brevetti.html">${t.brev}</a></li>
+          <li><a href="divulgazione.html">${t.divulg}</a></li>
+          <li><a href="news.html">${t.news}</a></li>
         </ul>
       </div>
       <div>
-        <h5>Servizi</h5>
+        <h5>${t.fServ}</h5>
         <ul>
-          <li><a href="finanza-agevolata.html">Finanza Agevolata</a></li>
-          <li><a href="ricerca-sviluppo.html">Credito d'imposta R&amp;S</a></li>
-          <li><a href="torymus.html">Torymus sinensis</a></li>
-          <li><a href="contatti.html">Lavora con noi</a></li>
+          <li><a href="finanza-agevolata.html">${t.fin}</a></li>
+          <li><a href="ricerca-sviluppo.html">${t.fCredito}</a></li>
+          <li><a href="torymus.html">${t.tor}</a></li>
+          <li><a href="contatti.html">${t.fLavora}</a></li>
         </ul>
       </div>
       <div>
-        <h5>Certificazioni</h5>
+        <h5>${t.fCert}</h5>
         <div class="iso-badges">
-          <div class="iso-badge"><strong>ISO</strong><span>9001</span><small>Qualità</small></div>
-          <div class="iso-badge"><strong>ISO</strong><span>14001</span><small>Ambiente</small></div>
+          <div class="iso-badge"><strong>ISO</strong><span>9001</span><small>${t.fQual}</small></div>
+          <div class="iso-badge"><strong>ISO</strong><span>14001</span><small>${t.fAmb}</small></div>
         </div>
       </div>
       <div>
-        <h5>Contatti</h5>
+        <h5>${t.fCont}</h5>
         <ul>
           <li><a href="mailto:segreteria@oasis-srl.it">segreteria@oasis-srl.it</a></li>
           <li>P.IVA 02369130642</li>
           <li>SDI KRRH6B9</li>
           <li style="margin-top:14px; padding-top:10px; border-top:1px solid rgba(255,255,255,.12); font-size:12px; color:rgba(247,244,237,.55);">
-            Anagrafe Nazionale Ricerche<br><strong style="color:var(--sun);font-weight:500;">n. 000066_IMPR_/oasissrl</strong>
+            ${t.fAnag}<br><strong style="color:var(--sun);font-weight:500;">n. 000066_IMPR_/oasissrl</strong>
           </li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <div>© 2026 OASIS srl · Tutti i diritti riservati</div>
-      <div><a href="privacy.html">Privacy &amp; Cookie</a></div>
+      <div>${t.fRights}</div>
+      <div><a href="privacy.html">${t.fPrivacy}</a></div>
     </div>
   </div>
 </footer>`;
 
   function inject(id, html) {
-    const el = document.getElementById(id);
+    var el = document.getElementById(id);
     if (el) el.innerHTML = html;
   }
 
@@ -129,15 +179,14 @@
     inject('footer-slot', FOOTER);
 
     // Marca current la voce di menu della pagina corrente
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('nav a').forEach(a => {
-      const href = (a.getAttribute('href') || '').split('#')[0];
-      if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-        a.classList.add('current');
-      }
+    var page = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('nav a').forEach(function(a) {
+      if (a.classList.contains('lang-switch')) return;
+      var href = (a.getAttribute('href') || '').split('#')[0];
+      if (href === page || (page === '' && href === 'index.html')) a.classList.add('current');
     });
 
-    // Menu mobile: apertura/chiusura del pannello di navigazione
+    // Menu mobile
     var nav = document.getElementById('main-nav');
     var toggle = document.querySelector('.nav-toggle');
     if (nav && toggle) {
@@ -145,42 +194,29 @@
         nav.classList.toggle('open', open);
         toggle.classList.toggle('is-open', open);
         toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-        toggle.setAttribute('aria-label', open ? 'Chiudi il menu' : 'Apri il menu');
+        toggle.setAttribute('aria-label', open ? t.closeMenu : t.openMenu);
       };
-      toggle.addEventListener('click', function() {
-        setOpen(!nav.classList.contains('open'));
-      });
-      // Chiude il menu dopo aver scelto una voce
-      nav.querySelectorAll('a').forEach(function(a) {
-        a.addEventListener('click', function() { setOpen(false); });
-      });
-      // Chiude il menu tornando a schermo largo o premendo Esc
-      window.addEventListener('resize', function() {
-        if (window.innerWidth > 980) setOpen(false);
-      });
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') setOpen(false);
-      });
+      toggle.addEventListener('click', function() { setOpen(!nav.classList.contains('open')); });
+      nav.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', function() { setOpen(false); }); });
+      window.addEventListener('resize', function() { if (window.innerWidth > 980) setOpen(false); });
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape') setOpen(false); });
     }
 
-    // Le schede progetto con un video prendono la classe is-video, cosi' il CSS
-    // mostra il fotogramma intero e centrato invece di ritagliarlo.
+    // Schede progetto con video: fotogramma intero e centrato
     document.querySelectorAll('.project-image').forEach(function(im) {
       if (im.querySelector('.video-thumb')) im.classList.add('is-video');
     });
 
-    // Video YouTube: il player si apre dentro la pagina invece che su YouTube.
-    // Niente viene richiesto ai server di Google finche' non si clicca su play,
-    // quindi la pagina resta senza cookie di terze parti al caricamento.
+    // Video YouTube: player nella pagina, nessun contatto con Google prima del clic
     document.querySelectorAll('a.video-thumb').forEach(function(a) {
       a.addEventListener('click', function(e) {
         var m = (a.getAttribute('href') || '').match(/(?:v=|youtu\.be\/|embed\/|live\/)([A-Za-z0-9_-]{11})/);
-        if (!m) return;                       // link inatteso: lascia il comportamento normale
+        if (!m) return;
         e.preventDefault();
         var f = document.createElement('iframe');
         f.className = 'video-player';
         f.src = 'https://www.youtube-nocookie.com/embed/' + m[1] + '?autoplay=1&rel=0';
-        f.title = a.getAttribute('title') || 'Video YouTube';
+        f.title = a.getAttribute('title') || 'YouTube video';
         f.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
         f.setAttribute('allowfullscreen', '');
         f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
@@ -188,7 +224,7 @@
       });
     });
 
-    // Effetto "scrolled" sulla barra fissa: si assottiglia e prende ombra
+    // Effetto "scrolled" sulla barra fissa
     var header = document.querySelector('header.main');
     if (header) {
       var onScroll = function() {

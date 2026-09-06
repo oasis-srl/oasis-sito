@@ -2686,3 +2686,27 @@ section[id], [id].anchor-target { scroll-margin-top: 110px; }
   .news-item { grid-template-columns: 1fr; }
   .news-media { aspect-ratio: 16 / 10; }
 }
+
+
+/* ─── SELETTORE LINGUA ─── */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  padding: 6px 12px;
+  transition: border-color .2s ease, color .2s ease;
+}
+.lang-switch svg { width: 15px; height: 15px; opacity: .7; }
+.lang-switch:hover { color: var(--accent); border-color: var(--accent); }
+nav ul li.lang-li { margin-left: 4px; }
+@media (max-width: 980px) {
+  nav ul li.lang-li { margin-left: 0; padding-top: 14px; }
+  .lang-switch { font-size: 14px; }
+  .lang-switch svg { width: 17px; height: 17px; }
+}
