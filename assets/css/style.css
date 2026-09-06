@@ -818,9 +818,9 @@ footer .brand-block p { color: rgba(247,244,237,.65); margin-top: 16px; max-widt
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
   .topbar-info { display: none; }
   .topbar-info:last-child { display: flex; }
-  .timeline-item { grid-template-columns: 90px 1fr; gap: 20px; }
-  .timeline-item::after { left: 42px; }
-  .timeline-item:not(:last-child)::before { left: 47px; }
+  .timeline-item { grid-template-columns: 88px 1fr; gap: 18px; }
+  .timeline-item::after { left: 66px; }
+  .timeline-item:not(:last-child)::before { left: 71px; }
   .pub-item { grid-template-columns: 1fr; gap: 8px; }
   .contact-form .form-row { grid-template-columns: 1fr; }
   section.block, .divulgation-intro, .philosophy { padding: 60px 0; }
