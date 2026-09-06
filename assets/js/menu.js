@@ -51,6 +51,7 @@
           </ul>
         </li>
         <li><a href="divulgazione.html">Divulgazione</a></li>
+        <li><a href="news.html">News</a></li>
         <li class="cta-li"><a href="contatti.html" class="cta">Contattaci</a></li>
       </ul>
     </nav>
@@ -79,6 +80,7 @@
           <li><a href="progetti.html">Progetti</a></li>
           <li><a href="brevetti.html">Brevetti</a></li>
           <li><a href="divulgazione.html">Divulgazione</a></li>
+          <li><a href="news.html">News</a></li>
         </ul>
       </div>
       <div>
