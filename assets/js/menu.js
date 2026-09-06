@@ -174,7 +174,7 @@
     // quindi la pagina resta senza cookie di terze parti al caricamento.
     document.querySelectorAll('a.video-thumb').forEach(function(a) {
       a.addEventListener('click', function(e) {
-        var m = (a.getAttribute('href') || '').match(/(?:v=|youtu\.be\/|embed\/)([A-Za-z0-9_-]{11})/);
+        var m = (a.getAttribute('href') || '').match(/(?:v=|youtu\.be\/|embed\/|live\/)([A-Za-z0-9_-]{11})/);
         if (!m) return;                       // link inatteso: lascia il comportamento normale
         e.preventDefault();
         var f = document.createElement('iframe');
