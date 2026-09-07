@@ -2754,7 +2754,7 @@ html { scroll-behavior: smooth; }
 .pg-count { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: .5px; color: var(--accent); background: rgba(45,122,62,.10); padding: 3px 10px; border-radius: 20px; text-transform: none; }
 .pg-chevron { position: absolute; right: 4px; top: 26px; transition: transform .25s ease; color: var(--accent); font-size: 15px; line-height: 1; }
 .pg-collapsed .pg-chevron { transform: rotate(-90deg); }
-.pg-collapsed .pg-desc { display: none; }
 .pg-collapsed .projects-grid { display: none; }
+.pg-acc-head .pg-desc { max-width: 760px; }
 .pg-section .projects-grid { margin-top: 4px; margin-bottom: 32px; }
 @media (max-width: 700px) { .pg-nav-label { display: none; } .projects-group-head.pg-acc-head h3 { font-size: 22px; } }
