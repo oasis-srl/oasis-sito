@@ -350,6 +350,17 @@ footer .brand-block p { color: rgba(247,244,237,.65); margin-top: 16px; max-widt
   font-weight: 600;
 }
 .team-card p { color: var(--ink-soft); font-size: 14px; line-height: 1.6; }
+.team-email {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color .2s ease;
+  word-break: break-word;
+}
+.team-email:hover { border-bottom-color: var(--accent); }
 
 /* TIMELINE */
 .timeline { position: relative; padding-left: 0; }
