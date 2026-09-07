@@ -225,16 +225,10 @@
       });
     });
 
-    // ---- Pagina Progetti: filoni a fisarmonica + barra "Vai a" ----
+    // ---- Pagina Progetti: filoni a fisarmonica con intestazione sticky ----
     var pgHeads = [].slice.call(document.querySelectorAll('.projects-group-head'));
     if (pgHeads.length) {
-      var pgLabel = inEN ? 'Go to' : 'Vai a';
       var pgWord = inEN ? ['project', 'projects'] : ['progetto', 'progetti'];
-      var pgSections = [];
-      var pgChips = [];
-      var pgSetActive = function (idx) {
-        pgChips.forEach(function (c, j) { c.classList.toggle('active', j === idx); });
-      };
       pgHeads.forEach(function (head, i) {
         var grid = head.nextElementSibling;
         if (!grid || !grid.classList.contains('projects-grid')) return;
@@ -263,55 +257,30 @@
         head.tabIndex = 0;
         head.setAttribute('aria-expanded', 'false');
         var pgToggle = function () {
+          var stickyTop = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--pg-sticky-top')) || 70;
+          var wasStuck = head.getBoundingClientRect().top <= stickyTop + 2;
           var c = sec.classList.toggle('pg-collapsed');
           head.setAttribute('aria-expanded', c ? 'false' : 'true');
+          // se richiudo un filone mentre la sua intestazione e' incollata in alto,
+          // riporto la vista sull'intestazione per non perdere il punto
+          if (c && wasStuck) {
+            window.scrollTo(0, head.getBoundingClientRect().top + window.scrollY - stickyTop - 8);
+          }
         };
         head.addEventListener('click', pgToggle);
         head.addEventListener('keydown', function (e) {
           if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pgToggle(); }
         });
-        pgSections.push(sec);
       });
-      if (pgSections.length) {
-        var pgNav = document.createElement('div');
-        pgNav.className = 'pg-nav';
-        var pgInner = document.createElement('div');
-        pgInner.className = 'pg-nav-inner';
-        var pgLab = document.createElement('span');
-        pgLab.className = 'pg-nav-label';
-        pgLab.textContent = pgLabel;
-        pgInner.appendChild(pgLab);
-        pgHeads.forEach(function (head, i) {
-          var h3 = head.querySelector('h3');
-          if (!h3) return;
-          var a = document.createElement('a');
-          a.className = 'pg-chip';
-          a.textContent = (h3.childNodes[0] && h3.childNodes[0].textContent || '').trim();
-          a.href = '#filone-' + i;
-          a.addEventListener('click', function (e) {
-            e.preventDefault();
-            pgSections[i].classList.remove('pg-collapsed');
-            head.setAttribute('aria-expanded', 'true');
-            pgSetActive(i);
-            head.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          });
-          pgInner.appendChild(a);
-          pgChips.push(a);
-        });
-        pgNav.appendChild(pgInner);
-        pgSections[0].parentNode.insertBefore(pgNav, pgSections[0]);
-        var pgHeader = document.querySelector('header.main');
-        var pgFixTop = function () { if (pgHeader) pgNav.style.top = pgHeader.offsetHeight + 'px'; };
-        pgFixTop();
-        window.addEventListener('scroll', pgFixTop, { passive: true });
-        window.addEventListener('resize', pgFixTop);
-        if ('IntersectionObserver' in window) {
-          var pgObs = new IntersectionObserver(function (es) {
-            es.forEach(function (e) { if (e.isIntersecting) { pgSetActive(+e.target.id.split('-')[1]); } });
-          }, { rootMargin: '-140px 0px -60% 0px', threshold: 0 });
-          pgHeads.forEach(function (h) { pgObs.observe(h); });
-        }
-      }
+      // l'intestazione sticky si aggancia all'altezza reale dell'header (che si rimpicciolisce allo scroll)
+      var pgHeader = document.querySelector('header.main');
+      var pgFixTop = function () {
+        var h = pgHeader ? pgHeader.offsetHeight : 70;
+        document.documentElement.style.setProperty('--pg-sticky-top', h + 'px');
+      };
+      pgFixTop();
+      window.addEventListener('scroll', pgFixTop, { passive: true });
+      window.addEventListener('resize', pgFixTop);
     }
 
     // Effetto "scrolled" sulla barra fissa
