@@ -225,6 +225,95 @@
       });
     });
 
+    // ---- Pagina Progetti: filoni a fisarmonica + barra "Vai a" ----
+    var pgHeads = [].slice.call(document.querySelectorAll('.projects-group-head'));
+    if (pgHeads.length) {
+      var pgLabel = inEN ? 'Go to' : 'Vai a';
+      var pgWord = inEN ? ['project', 'projects'] : ['progetto', 'progetti'];
+      var pgSections = [];
+      var pgChips = [];
+      var pgSetActive = function (idx) {
+        pgChips.forEach(function (c, j) { c.classList.toggle('active', j === idx); });
+      };
+      pgHeads.forEach(function (head, i) {
+        var grid = head.nextElementSibling;
+        if (!grid || !grid.classList.contains('projects-grid')) return;
+        var sec = document.createElement('div');
+        sec.className = 'pg-section pg-collapsed';
+        head.parentNode.insertBefore(sec, head);
+        sec.appendChild(head);
+        sec.appendChild(grid);
+        head.classList.add('pg-acc-head');
+        head.id = 'filone-' + i;
+        var desc = head.querySelector('p');
+        if (desc) desc.classList.add('pg-desc');
+        var n = grid.querySelectorAll('.project-card').length;
+        var h3 = head.querySelector('h3');
+        if (h3) {
+          var badge = document.createElement('span');
+          badge.className = 'pg-count';
+          badge.textContent = n + ' ' + pgWord[n === 1 ? 0 : 1];
+          h3.appendChild(badge);
+        }
+        var chev = document.createElement('span');
+        chev.className = 'pg-chevron';
+        chev.textContent = '▼';
+        head.appendChild(chev);
+        head.setAttribute('role', 'button');
+        head.tabIndex = 0;
+        head.setAttribute('aria-expanded', 'false');
+        var pgToggle = function () {
+          var c = sec.classList.toggle('pg-collapsed');
+          head.setAttribute('aria-expanded', c ? 'false' : 'true');
+        };
+        head.addEventListener('click', pgToggle);
+        head.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pgToggle(); }
+        });
+        pgSections.push(sec);
+      });
+      if (pgSections.length) {
+        var pgNav = document.createElement('div');
+        pgNav.className = 'pg-nav';
+        var pgInner = document.createElement('div');
+        pgInner.className = 'pg-nav-inner';
+        var pgLab = document.createElement('span');
+        pgLab.className = 'pg-nav-label';
+        pgLab.textContent = pgLabel;
+        pgInner.appendChild(pgLab);
+        pgHeads.forEach(function (head, i) {
+          var h3 = head.querySelector('h3');
+          if (!h3) return;
+          var a = document.createElement('a');
+          a.className = 'pg-chip';
+          a.textContent = (h3.childNodes[0] && h3.childNodes[0].textContent || '').trim();
+          a.href = '#filone-' + i;
+          a.addEventListener('click', function (e) {
+            e.preventDefault();
+            pgSections[i].classList.remove('pg-collapsed');
+            head.setAttribute('aria-expanded', 'true');
+            pgSetActive(i);
+            head.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+          pgInner.appendChild(a);
+          pgChips.push(a);
+        });
+        pgNav.appendChild(pgInner);
+        pgSections[0].parentNode.insertBefore(pgNav, pgSections[0]);
+        var pgHeader = document.querySelector('header.main');
+        var pgFixTop = function () { if (pgHeader) pgNav.style.top = pgHeader.offsetHeight + 'px'; };
+        pgFixTop();
+        window.addEventListener('scroll', pgFixTop, { passive: true });
+        window.addEventListener('resize', pgFixTop);
+        if ('IntersectionObserver' in window) {
+          var pgObs = new IntersectionObserver(function (es) {
+            es.forEach(function (e) { if (e.isIntersecting) { pgSetActive(+e.target.id.split('-')[1]); } });
+          }, { rootMargin: '-140px 0px -60% 0px', threshold: 0 });
+          pgHeads.forEach(function (h) { pgObs.observe(h); });
+        }
+      }
+    }
+
     // Effetto "scrolled" sulla barra fissa
     var header = document.querySelector('header.main');
     if (header) {

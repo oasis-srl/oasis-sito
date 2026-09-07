@@ -2733,3 +2733,28 @@ nav ul li.lang-li { margin-left: 4px; }
   .lang-switch { font-size: 14px; }
   .lang-switch svg { width: 17px; height: 17px; }
 }
+
+
+/* ============================================================
+   Pagina Progetti: filoni a fisarmonica + barra "Vai a"
+   (comportamento generato da menu.js; qui solo lo stile)
+   ============================================================ */
+html { scroll-behavior: smooth; }
+.pg-nav { position: sticky; top: 82px; z-index: 40; background: var(--paper); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin: 0 0 20px; padding: 12px 0; }
+.pg-nav-inner { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.pg-nav-label { font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--ink-soft); margin-right: 6px; font-weight: 600; }
+.pg-chip { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: var(--ink-soft); background: var(--paper-warm); border: 1px solid var(--rule); padding: 7px 15px; border-radius: 20px; text-decoration: none; cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
+.pg-chip:hover { border-color: var(--accent); color: var(--accent); }
+.pg-chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.pg-section { border-top: 1px solid var(--rule); }
+.pg-section:last-of-type { border-bottom: 1px solid var(--rule); }
+.projects-group-head.pg-acc-head { position: relative; cursor: pointer; padding: 24px 46px 20px 0; margin: 0; max-width: none; scroll-margin-top: 150px; }
+.projects-group-head.pg-acc-head h3 { margin: 0; display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.projects-group-head.pg-acc-head .pg-desc { margin: 8px 0 0; }
+.pg-count { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: .5px; color: var(--accent); background: rgba(45,122,62,.10); padding: 3px 10px; border-radius: 20px; text-transform: none; }
+.pg-chevron { position: absolute; right: 4px; top: 26px; transition: transform .25s ease; color: var(--accent); font-size: 15px; line-height: 1; }
+.pg-collapsed .pg-chevron { transform: rotate(-90deg); }
+.pg-collapsed .pg-desc { display: none; }
+.pg-collapsed .projects-grid { display: none; }
+.pg-section .projects-grid { margin-top: 4px; margin-bottom: 32px; }
+@media (max-width: 700px) { .pg-nav-label { display: none; } .projects-group-head.pg-acc-head h3 { font-size: 22px; } }
