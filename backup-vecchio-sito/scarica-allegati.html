@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Scarica allegati — vecchio sito OASIS</title>
+<style>
+  :root{
+    --bg:#f6f7f5; --card:#fff; --ink:#1e2b23; --muted:#5f6f66;
+    --line:#dfe5e0; --accent:#2f6b4f; --accent-soft:#e8f1ec; --warn:#8a5a12; --warn-bg:#fdf5e6;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    padding:32px 20px 64px}
+  .wrap{max-width:820px;margin:0 auto}
+  h1{font-size:26px;margin:0 0 6px;letter-spacing:-.01em}
+  .sub{color:var(--muted);margin:0 0 24px}
+  .note{background:var(--warn-bg);border:1px solid #f0e0c0;color:var(--warn);
+    border-radius:10px;padding:14px 16px;margin:0 0 28px;font-size:14.5px}
+  .note b{color:#6d4708}
+  h2{font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);
+    margin:32px 0 10px;font-weight:600}
+  ul{list-style:none;margin:0;padding:0}
+  li{background:var(--card);border:1px solid var(--line);border-radius:10px;
+    margin-bottom:8px;display:flex;align-items:flex-start;gap:12px;padding:13px 15px}
+  li:hover{border-color:var(--accent)}
+  input[type=checkbox]{margin-top:4px;width:17px;height:17px;accent-color:var(--accent);flex:none}
+  .meta{flex:1;min-width:0}
+  a{color:var(--accent);text-decoration:none;font-weight:600;word-break:break-word}
+  a:hover{text-decoration:underline}
+  .size{color:var(--muted);font-size:13px;margin-top:2px}
+  .done{opacity:.45}
+  .done a{color:var(--muted)}
+  .bar{position:sticky;top:0;background:var(--bg);padding:10px 0 14px;margin:0 0 4px;
+    border-bottom:1px solid var(--line);z-index:2}
+  .count{font-size:14px;color:var(--muted)}
+  button{font:inherit;font-size:14px;background:var(--accent);color:#fff;border:0;
+    border-radius:8px;padding:8px 14px;cursor:pointer}
+  button.ghost{background:var(--accent-soft);color:var(--accent)}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Scarica gli allegati del vecchio sito</h1>
+<p class="sub">17 file dal vecchio sito OASIS su IONOS. Clicca ogni link: il file si apre o si scarica.</p>
+
+<div class="note">
+  <b>Importante:</b> i link usano <b>http</b> e non https, perché il certificato del vecchio sito è rotto.
+  Se il browser avvisa che il sito non è sicuro, procedi comunque — è il sito di OASIS.<br><br>
+  Salva i file nella cartella <b>backup-vecchio-sito/allegati/</b>.
+  Spunta la casella man mano che li scarichi: la pagina si ricorda i tuoi progressi.
+</div>
+
+<div class="bar">
+  <div class="row">
+    <button id="openAll">Apri i prossimi 5</button>
+    <button class="ghost" id="reset">Azzera spunte</button>
+    <span class="count" id="count"></span>
+  </div>
+</div>
+
+<h2>Documento strategico Torymus sinensis — 6 lingue</h2>
+<ul id="l1">
+  <li><input type="checkbox"><div class="meta"><a href="http://s425923549.sitoweb-iniziale.it/app/download/5805664486/Documento_Strategico_Oasis_IT.pdf">Documento Strategico Oasis — Italiano</a><div class="size">183,7 KB</div></div></li>
+  <li><input type="checkbox"><div class="meta"><a href="http://s425923549.sitoweb-iniziale.it/app/download/5805664597/Documento_Strategico_Oasis_EN.pdf">Documento Strategico Oasis — Inglese</a><div class="size">101,9 KB</div></div></li>
+  <li><input type="checkbox"><div class="meta"><a href="http://s425923549.sitoweb-iniziale.it/app/download/5805664559/Documento_Strategico_Oasis_FR.pdf">Documento Strategico Oasis — Francese</a><div class="size">102,3 KB</div></div></li>
+  <li><input type="checkbox"><div class="meta"><a href="http://s425923549.sitoweb-iniziale.it/app/download/5805664573/Documento_Estrategico_Oasis_ES.pdf">Documento Strategico Oasis — Spagnolo</a><div class="size">101,6 KB</div></div></li>
+  <li><input type="checkbox"><div class="meta"><a href="http://s425923549.sitoweb-iniziale.it/app/download/5805664528/Documento_Estrategico_Oasis_PT.pdf">Documento Strategico Oasis — Portoghese</a><div class="size">103,4 KB</div></div></li>
+  <li><input type="checkbox"><div class="meta"><a href="http://s425923549.sitoweb-iniziale.it/app/download/5817497449/Documento_Strategico_Oasis_GR.pdf">Documento Strategico Oasis — Greco</a><div class="size">109,9 KB</div></div></li>
+</ul>
+
+<h2>Pubblicazioni e documenti scientifici</h2>
+<ul id="l2">
+  <li><input type="checkbox"><div class="meta"><a href="http://s425923549.sitoweb-iniziale.it/app/download/5802529367/costa+d%27amalfi++I+limoni+..pdf">I limoni di Amalfi: una risorsa agronomica</a><div class="size">1,2 MB — era segnalato come perduto</div></div></li>
+  <li><input type="checkbox"><div class="meta"><a href="http://s425923549.sitoweb-iniziale.it/app/download/5803126842/Penetrazione+commerciale+in+Canada+opportunit%C3%A0+per+l%27+agro+indu.pdf">Penetrazione commerciale in Canada: opportunità per l'agro-industria</a><div class="size">16,4 MB — era segnalato come perduto</div></div></li>
+  <li><input type="checkbox"><div class="meta"><a href="http://s425923549.sitoweb-iniziale.it/app/download/5806364804/Progetto+OTTICA_ProtocolloAgronomico.pdf">Progetto OTTICA — Protocollo Agronomico del castagneto</a><div class="size">16,9 MB</div></div></li>
+  <li><input type="checkbox"><div class="meta"><a href="http://s425923549.sitoweb-iniziale.it/app/download/5806364855/BIOTRINE.pdf">BIOTRINE — Trichoderma in limonicoltura e nematodi in castanicoltura</a><div class="size">9,3 MB</div></div></li>
+  <li><input type="checkbox"><div class="meta"><a href="http://s425923549.sitoweb-iniziale.it/app/download/5811256985/Introduction+and+acclimation+of+Torymus+sinensis.pdf">Introduction and acclimation of Torymus sinensis in the South of Italy</a><div class="size">975,3 KB</div></div></li>
+  <li><input type="checkbox"><div class="meta"><a href="http://s425923549.sitoweb-iniziale.it/app/download/5797064073/Presentazione+corso+unisa.pdf">Presentazione corso di Alta Formazione UNISA</a><div class="size">503,1 KB — contiene anno e titolo mancanti</div></div></li>
+  <li><input type="checkbox"><div class="meta"><a href="http://s425923549.sitoweb-iniziale.it/app/download/5796049542/programmasessioni-1.pdf">Programma CASTANEA 2014</a><div class="size">101,4 KB</div></div></li>
+</ul>
+
+<h2>Documenti istituzionali e progetti</h2>
+<ul id="l3">
+  <li><input type="checkbox"><div class="meta"><a href="https://cdn.website-start.de/proxy/apps/cei7th/uploads/gleichzwei/instances/AA4EC1BA-4377-4F81-917F-27404D1A70C1/wcinstances/epaper/710019ec-73bf-4d73-bb4f-73f9eab6f1af/pdf/Regolamneto-interno-approvato-il-31-03-2024.-def.pdf">Regolamento interno Organismo di Ricerca (31/03/2024)</a><div class="size">https — si apre senza avvisi</div></div></li>
+  <li><input type="checkbox"><div class="meta"><a href="http://s425923549.sitoweb-iniziale.it/app/download/5807323462/scheda_OASIS+srl.pdf">Premio SMAU 2018 — scheda OASIS srl</a><div class="size">262,6 KB</div></div></li>
+  <li><input type="checkbox"><div class="meta"><a href="https://cdn.website-start.de/proxy/apps/cei7th/uploads/gleichzwei/instances/AA4EC1BA-4377-4F81-917F-27404D1A70C1/wcinstances/epaper/5130eafa-cc05-4c63-8598-acf000ba4d7f/pdf/catalogo-sanopronto.pdf">Catalogo SANOPRONTO</a><div class="size">https — si apre senza avvisi</div></div></li>
+  <li><input type="checkbox"><div class="meta"><a href="https://cdn.website-start.de/proxy/apps/cei7th/uploads/gleichzwei/instances/AA4EC1BA-4377-4F81-917F-27404D1A70C1/wcinstances/epaper/de4fd5dd-a186-4fe9-b507-366bf65d7a4c/pdf/Parco-agrisolare-1.0.pdf">Parco Agrisolare 1.0</a><div class="size">https — si apre senza avvisi</div></div></li>
+  <li><input type="checkbox"><div class="meta"><a href="https://cdn.website-start.de/proxy/apps/cei7th/uploads/gleichzwei/instances/AA4EC1BA-4377-4F81-917F-27404D1A70C1/wcinstances/epaper/189e076f-c872-48a5-8f67-521a746b6eed/pdf/20240423-slides_sintesi_progetti_.pdf">Slides sintesi progetti (23/04/2024)</a><div class="size">https — si apre senza avvisi</div></div></li>
+</ul>
+
+<h2>Foto galleria Torymus sinensis</h2>
+<ul id="l4">
+  <li><input type="checkbox"><div class="meta"><a href="http://s425923549.sitoweb-iniziale.it/s/cc_images/cache_2484432078.jpg?t=1662551066">Foto Torymus 1</a></div></li>
+  <li><input type="checkbox"><div class="meta"><a href="http://s425923549.sitoweb-iniziale.it/s/cc_images/cache_2484432366.jpg?t=1607520209">Foto Torymus 2</a></div></li>
+  <li><input type="checkbox"><div class="meta"><a href="http://s425923549.sitoweb-iniziale.it/s/cc_images/cache_2484432245.jpg?t=1607518860">Foto Torymus 3</a></div></li>
+  <li><input type="checkbox"><div class="meta"><a href="http://s425923549.sitoweb-iniziale.it/s/cc_images/cache_2484432278.jpg?t=1662550929">Foto Torymus 4</a></div></li>
+  <li><input type="checkbox"><div class="meta"><a href="http://s425923549.sitoweb-iniziale.it/s/cc_images/cache_2484432281.jpg?t=1662551017">Foto Torymus 5</a></div></li>
+  <li><input type="checkbox"><div class="meta"><a href="http://s425923549.sitoweb-iniziale.it/s/misc/logo.jpg">Logo OASIS del vecchio sito</a></div></li>
+</ul>
+
+<script>
+(function(){
+  const boxes=[...document.querySelectorAll('input[type=checkbox]')];
+  const KEY='oasis-allegati-v1';
+  let saved={};
+  try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+  function sync(){
+    boxes.forEach((b,i)=>b.closest('li').classList.toggle('done',b.checked));
+    document.getElementById('count').textContent =
+      boxes.filter(b=>b.checked).length+' di '+boxes.length+' scaricati';
+  }
+  boxes.forEach((b,i)=>{
+    b.checked=!!saved[i];
+    b.addEventListener('change',()=>{
+      saved[i]=b.checked;
+      try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}
+      sync();
+    });
+    b.closest('li').querySelector('a').addEventListener('click',()=>{
+      setTimeout(()=>{if(!b.checked){b.checked=true;b.dispatchEvent(new Event('change'))}},400);
+    });
+  });
+  document.getElementById('openAll').addEventListener('click',()=>{
+    const todo=boxes.filter(b=>!b.checked).slice(0,5);
+    todo.forEach((b,k)=>setTimeout(()=>{
+      window.open(b.closest('li').querySelector('a').href,'_blank');
+      b.checked=true;b.dispatchEvent(new Event('change'));
+    },k*700));
+  });
+  document.getElementById('reset').addEventListener('click',()=>{
+    saved={};try{localStorage.removeItem(KEY)}catch(e){}
+    boxes.forEach(b=>b.checked=false);sync();
+  });
+  sync();
+})();
+</script>
+
+</div>
+</body>
+</html>
