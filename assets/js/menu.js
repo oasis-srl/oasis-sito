@@ -265,7 +265,71 @@
       track.addEventListener('scroll', function () { clearTimeout(tmr); tmr = setTimeout(setActive, 80); }, { passive: true });
       window.addEventListener('resize', setActive);
       setActive();
+
+      // scorrimento automatico: si mette in pausa col mouse sopra e si ferma se l'utente interagisce
+      var ncReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var ncAuto = null, ncPaused = false;
+      var ncAdvance = function () { var i = current(); goTo(i >= slides.length - 1 ? 0 : i + 1); };
+      var ncStart = function () { if (!ncReduce && !ncAuto) ncAuto = setInterval(function () { if (!ncPaused) ncAdvance(); }, 4200); };
+      var ncStop = function () { if (ncAuto) { clearInterval(ncAuto); ncAuto = null; } };
+      car.addEventListener('mouseenter', function () { ncPaused = true; });
+      car.addEventListener('mouseleave', function () { ncPaused = false; });
+      if (prev) prev.addEventListener('click', ncStop);
+      if (next) next.addEventListener('click', ncStop);
+      dots.forEach(function (dd) { dd.addEventListener('click', ncStop); });
+      track.addEventListener('pointerdown', ncStop);
+      ncStart();
     });
+
+    // ---- News: comparsa in scorrimento + filtri per categoria ----
+    var newsList = document.querySelector('.news-list');
+    if (newsList) {
+      var newsItems = [].slice.call(newsList.querySelectorAll('.news-item'));
+
+      // comparsa in scorrimento (solo con JS; senza JS il CSS lascia tutto visibile)
+      document.documentElement.classList.add('js-reveal');
+      newsItems.forEach(function (it) { it.classList.add('reveal'); });
+      if ('IntersectionObserver' in window) {
+        var nio = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); nio.unobserve(e.target); } });
+        }, { threshold: 0.15 });
+        newsItems.forEach(function (it) { nio.observe(it); });
+      } else {
+        newsItems.forEach(function (it) { it.classList.add('in'); });
+      }
+
+      // filtri per categoria, ricavati dai tag presenti (nessuna modifica manuale all'HTML)
+      var allLabel = inEN ? 'All' : 'Tutte';
+      var cats = [];
+      newsItems.forEach(function (it) {
+        var tg = it.querySelector('.news-tag');
+        var c = tg ? tg.textContent.trim() : '';
+        it.setAttribute('data-cat', c);
+        if (c && cats.indexOf(c) === -1) cats.push(c);
+      });
+      if (cats.length > 1) {
+        var bar = document.createElement('div');
+        bar.className = 'news-filter';
+        var mkChip = function (label, cat) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'news-chip' + (cat === null ? ' is-active' : '');
+          b.textContent = label;
+          b.addEventListener('click', function () {
+            bar.querySelectorAll('.news-chip').forEach(function (x) { x.classList.remove('is-active'); });
+            b.classList.add('is-active');
+            newsItems.forEach(function (it) {
+              var show = (cat === null) || (it.getAttribute('data-cat') === cat);
+              it.classList.toggle('is-hidden', !show);
+            });
+          });
+          bar.appendChild(b);
+        };
+        mkChip(allLabel, null);
+        cats.forEach(function (c) { mkChip(c, c); });
+        newsList.parentNode.insertBefore(bar, newsList);
+      }
+    }
 
     // ---- Pagina Progetti: filoni a fisarmonica con intestazione sticky ----
     var pgHeads = [].slice.call(document.querySelectorAll('.projects-group-head'));
