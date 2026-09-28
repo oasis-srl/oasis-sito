@@ -225,6 +225,48 @@
       });
     });
 
+    // ---- Carosello foto (news): puro scroll-snap, nessun cookie, nessun CDN ----
+    var ncLabels = inEN
+      ? { prev: 'Previous photo', next: 'Next photo', go: 'Go to photo ' }
+      : { prev: 'Foto precedente', next: 'Foto successiva', go: 'Vai alla foto ' };
+    document.querySelectorAll('[data-carousel]').forEach(function (car) {
+      var track = car.querySelector('.nc-track');
+      if (!track) return;
+      var slides = track.querySelectorAll('.nc-slide');
+      if (slides.length < 2) return;
+      var prev = car.querySelector('.nc-prev');
+      var next = car.querySelector('.nc-next');
+      var dotsWrap = car.querySelector('.nc-dots');
+      var dots = [];
+      var goTo = function (i) {
+        track.scrollTo({ left: track.clientWidth * i, behavior: 'smooth' });
+      };
+      if (dotsWrap) {
+        for (var i = 0; i < slides.length; i++) {
+          var d = document.createElement('button');
+          d.className = 'nc-dot';
+          d.type = 'button';
+          d.setAttribute('aria-label', ncLabels.go + (i + 1));
+          (function (idx) { d.addEventListener('click', function () { goTo(idx); }); })(i);
+          dotsWrap.appendChild(d);
+          dots.push(d);
+        }
+      }
+      if (prev) prev.setAttribute('aria-label', ncLabels.prev);
+      if (next) next.setAttribute('aria-label', ncLabels.next);
+      var current = function () { return Math.round(track.scrollLeft / track.clientWidth); };
+      var setActive = function () {
+        var idx = current();
+        dots.forEach(function (dd, i) { dd.classList.toggle('is-active', i === idx); });
+      };
+      if (prev) prev.addEventListener('click', function () { goTo(Math.max(0, current() - 1)); });
+      if (next) next.addEventListener('click', function () { goTo(Math.min(slides.length - 1, current() + 1)); });
+      var tmr;
+      track.addEventListener('scroll', function () { clearTimeout(tmr); tmr = setTimeout(setActive, 80); }, { passive: true });
+      window.addEventListener('resize', setActive);
+      setActive();
+    });
+
     // ---- Pagina Progetti: filoni a fisarmonica con intestazione sticky ----
     var pgHeads = [].slice.call(document.querySelectorAll('.projects-group-head'));
     if (pgHeads.length) {
