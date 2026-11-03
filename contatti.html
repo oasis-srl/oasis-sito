@@ -34,13 +34,12 @@
   <div class="container">
     <div class="contact-grid">
 
-      <form class="contact-form" action="https://formsubmit.co/segreteria@oasis-srl.it" method="POST" id="contact-form">
-        <!-- Configurazione FormSubmit -->
-        <input type="hidden" name="_subject" value="Nuova richiesta dal sito OASIS">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="true">
-        <input type="hidden" name="_next" id="form-next" value="">
-        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" id="contact-form">
+        <!-- Configurazione Web3Forms -->
+        <input type="hidden" name="access_key" value="aabfded0-a658-4ea0-94ce-ea9768d5d9fa">
+        <input type="hidden" name="subject" value="Nuova richiesta dal sito OASIS">
+        <input type="hidden" name="from_name" value="Sito OASIS">
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
 
         <div class="form-row">
           <div>
@@ -87,6 +86,7 @@
           <span><label for="f-privacy" style="display:inline;margin:0;font:inherit;text-transform:none;letter-spacing:0;">Ho letto l'<a href="privacy.html" target="_blank" rel="noopener">informativa privacy</a> e acconsento al trattamento dei dati personali per essere ricontattato. *</label></span>
         </div>
         <button type="submit" class="btn btn-primary">Invia la richiesta <span class="btn-arrow">→</span></button>
+        <p id="form-status" class="form-status" role="status" aria-live="polite" hidden></p>
       </form>
 
       <div class="contact-info">
@@ -131,9 +131,42 @@
 <div id="footer-slot"></div>
 
 <script src="assets/js/menu.js?v=20260928a"></script>
+<style>
+  .form-status { margin-top: 16px; padding: 14px 18px; border-radius: 4px; font-size: 15px; line-height: 1.55; }
+  .form-status.ok { background: rgba(45,122,62,.12); color: var(--accent-deep); border: 1px solid rgba(45,122,62,.35); }
+  .form-status.err { background: rgba(176,58,46,.10); color: #9a2d22; border: 1px solid rgba(176,58,46,.35); }
+  .form-status a { color: inherit; font-weight: 600; }
+</style>
 <script>
-  // Dopo l'invio, FormSubmit riporta l'utente su grazie.html (URL assoluto calcolato automaticamente)
-  document.getElementById('form-next').value = location.href.replace(/[^\/]*$/, 'grazie.html');
+(function () {
+  var form = document.getElementById('contact-form');
+  if (!form) return;
+  var status = document.getElementById('form-status');
+  var btn = form.querySelector('button[type="submit"]');
+  var btnHtml = btn ? btn.innerHTML : '';
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    if (btn) { btn.disabled = true; btn.innerHTML = "Invio in corso\u2026"; }
+    if (status) { status.hidden = true; status.className = 'form-status'; }
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form)
+    }).then(function (r) { return r.json(); }).then(function (data) {
+      if (data && data.success) {
+        form.reset();
+        status.className = 'form-status ok';
+        status.textContent = "Richiesta inviata. Grazie! Ti ricontatteremo al pi\u00f9 presto.";
+        status.hidden = false;
+      } else { throw new Error((data && data.message) || 'error'); }
+    }).catch(function () {
+      status.className = 'form-status err';
+      status.innerHTML = "Non \u00e8 stato possibile inviare la richiesta. Riprova tra poco, oppure scrivici a <a href=\"mailto:segreteria@oasis-srl.it\">segreteria@oasis-srl.it</a>.";
+      status.hidden = false;
+    }).finally(function () {
+      if (btn) { btn.disabled = false; btn.innerHTML = btnHtml; }
+    });
+  });
+})();
 </script>
 </body>
 </html>
