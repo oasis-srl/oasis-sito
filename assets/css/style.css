@@ -2448,6 +2448,17 @@ section[id], [id].anchor-target { scroll-margin-top: 110px; }
   color: var(--ink-soft);
   margin: 4px 0 0;
 }
+
+a.official-cred-card.is-download { text-decoration: none; color: inherit; cursor: pointer; }
+.official-cred-card .cred-download {
+  margin-top: auto;
+  padding-top: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+}
+a.official-cred-card.is-download:hover .cred-download { text-decoration: underline; }
+
 @media (max-width: 720px) {
   .official-creds-grid {
     grid-template-columns: 1fr;
