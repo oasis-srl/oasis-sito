@@ -2872,3 +2872,19 @@ html { scroll-behavior: smooth; }
 .project-funding-logos { background: #fff; border: 1px solid var(--rule); border-radius: 4px; padding: 8px 12px; margin-bottom: 16px; }
 .project-funding-logos img { display: block; width: 100%; height: auto; }
 .project-download { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* Pagina progetto cofinanziato (@thena): fascia loghi, elenchi, targa */
+.funding-banner { background: #fff; border: 1px solid var(--rule); border-radius: 4px; padding: 10px 16px; margin: 6px 0 26px; max-width: 760px; }
+.funding-banner img { display: block; width: 100%; height: auto; }
+.plain-list { list-style: none; margin: 18px 0 0; padding: 0; }
+.plain-list li { position: relative; padding-left: 22px; margin-bottom: 12px; color: var(--ink-soft); line-height: 1.65; }
+.plain-list li::before { content: ""; position: absolute; left: 0; top: .65em; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.plaque { max-width: 860px; margin: 8px auto 0; text-align: center; }
+.plaque img { display: block; width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 4px; box-shadow: 0 18px 40px -24px rgba(26,46,26,.35); background: #fff; }
+.plaque figcaption { margin-top: 14px; font-size: 14px; }
+.plaque figcaption a { color: var(--accent-deep); font-weight: 600; }
+.partners-line { max-width: 860px; margin: 22px auto 0; text-align: center; font-size: 14px; color: var(--ink-soft); }
+.news-media.is-doc { background: #fff; padding: 18px; }
+.news-media.is-doc > a { display: block; width: 100%; }
+.news-media.is-doc img { display: block; width: 100%; height: auto; transition: transform .6s cubic-bezier(.2,.6,.2,1); }
+.news-item:hover .news-media.is-doc img { transform: scale(1.03); }
