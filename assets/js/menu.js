@@ -323,8 +323,8 @@
     if (newsList) {
       var newsItems = [].slice.call(newsList.querySelectorAll('.news-item'));
 
-      // ---- Condivisione di ogni notizia (LinkedIn + condivisione del telefono / copia link) ----
-      // Ogni notizia riceve un id ricavato dal titolo, così il link porta proprio a quella notizia.
+      // ---- Condivisione delle notizie con pagina dedicata (LinkedIn + condivisione del telefono / copia link) ----
+      // Ogni notizia riceve comunque un id dal titolo (link diretto news.html#news-...).
       var shT = inEN
         ? { lbl: 'Share', li: 'Share on LinkedIn', ig: 'Instagram', more: 'Share', copied: 'Link copied — paste it into Instagram or anywhere else', copiedShort: 'Link copied' }
         : { lbl: 'Condividi', li: 'Condividi su LinkedIn', ig: 'Instagram', more: 'Condividi', copied: 'Link copiato — incollalo su Instagram o dove preferisci', copiedShort: 'Link copiato' };
@@ -347,7 +347,11 @@
         var content = it.querySelector('.news-content');
         if (!h || !content) return;
         if (!it.id) it.id = 'news-' + slug(h.textContent);
-        var url = baseUrl + '#' + it.id;
+        // Pulsanti solo sulle notizie con pagina dedicata: <article class="news-item" data-share="pagina.html">
+        // (la pagina ha i propri og:title/og:image, quindi l'anteprima su LinkedIn è quella della notizia)
+        var page = it.getAttribute('data-share');
+        if (!page) return;
+        var url = new URL(page, location.href).href;
         var title = h.textContent.trim();
         var box = document.createElement('div');
         box.className = 'news-share';
