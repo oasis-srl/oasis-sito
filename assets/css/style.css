@@ -2841,3 +2841,29 @@ html { scroll-behavior: smooth; }
 .pg-collapsed .projects-grid { display: none; }
 .pg-section .projects-grid { margin-top: 20px; margin-bottom: 32px; }
 @media (max-width: 700px) { .projects-group-head.pg-acc-head h3 { font-size: 22px; } }
+
+
+/* ===== PROMO BAR + RIQUADRO PROMO (Torymus, fino al 31/12/2026) ===== */
+.promo-bar { background: var(--sun); color: var(--ink); font-size: 14px; line-height: 1.4; }
+.promo-bar .container { display: flex; align-items: center; gap: 16px; }
+.promo-bar-link { flex: 1; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px 14px; padding: 10px 0; color: inherit; text-decoration: none; text-align: center; }
+.promo-bar-tag { background: var(--ink); color: var(--sun); font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 3px 8px; border-radius: 3px; }
+.promo-bar-more { font-weight: 600; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+.promo-bar-link:hover .promo-bar-more { color: var(--brand-red); }
+.promo-bar-close { background: none; border: 0; color: var(--ink); font-size: 22px; line-height: 1; cursor: pointer; padding: 4px 6px; opacity: .65; }
+.promo-bar-close:hover { opacity: 1; }
+@media (max-width: 640px) { .promo-bar { font-size: 13px; } .promo-bar .container { gap: 8px; } }
+
+.promo-box { padding: 56px 0 8px; }
+.promo-card { position: relative; background: var(--paper-warm); border: 2px solid var(--sun); border-left-width: 10px; border-radius: 6px; padding: 36px 40px; display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: center; }
+.promo-badge { font-family: 'Fraunces', serif; background: var(--sun); color: var(--ink); border-radius: 50%; width: 150px; height: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; line-height: 1.05; }
+.promo-badge strong { font-size: 44px; font-weight: 600; }
+.promo-badge span { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-top: 4px; }
+.promo-card h2 { font-family: 'Fraunces', serif; font-size: clamp(24px, 3vw, 32px); font-weight: 500; line-height: 1.2; margin: 6px 0 12px; }
+.promo-card ul { list-style: none; margin: 0 0 22px; }
+.promo-card li { padding-left: 22px; position: relative; margin-bottom: 6px; color: var(--ink-soft); }
+.promo-card li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+.promo-ex { font-size: 14px; color: var(--ink-soft); background: var(--paper); border-radius: 4px; padding: 10px 14px; margin-bottom: 22px; display: inline-block; }
+@media (max-width: 760px) { .promo-card { grid-template-columns: 1fr; padding: 28px 24px; gap: 20px; } .promo-badge { width: 120px; height: 120px; } .promo-badge strong { font-size: 36px; } }
+.promo-contact { margin-top: 16px; font-size: 14px; color: var(--ink-soft); }
+.promo-contact a { color: var(--accent-deep); font-weight: 600; white-space: nowrap; }

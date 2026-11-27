@@ -179,6 +179,43 @@
     inject('header-slot', HEADER);
     inject('footer-slot', FOOTER);
 
+    // ---- PROMOZIONE TORYMUS — scade da sola a fine 31/12/2026 ----
+    // Per una nuova promo: cambiare PROMO_END e i testi qui sotto e in torymus.html / en/torymus.html.
+    var PROMO_END = new Date('2027-01-01T00:00:00+01:00');
+    var promoOn = new Date() < PROMO_END;
+    document.querySelectorAll('[data-promo]').forEach(function (el) {
+      if (!promoOn) el.parentNode.removeChild(el);
+    });
+    var promoClosed = false;
+    try { promoClosed = sessionStorage.getItem('oasis-promo-torymus-2026') === '1'; } catch (e) {}
+    var topSlot = document.getElementById('topbar-slot');
+    if (promoOn && !promoClosed && topSlot) {
+      var pt = inEN
+        ? { tag: 'Offer', txt: '<strong><em>Torymus sinensis</em>: €50 off every release</strong> — the discount adds up for each release. Until 31 December 2026.', more: 'Find out more', close: 'Close' }
+        : { tag: 'Promozione', txt: '<strong><em>Torymus sinensis</em>: 50 € di sconto su ogni lancio</strong> — lo sconto si somma per ogni lancio acquistato. Fino al 31 dicembre 2026.', more: 'Scopri di più', close: 'Chiudi' };
+      var bar = document.createElement('div');
+      bar.className = 'promo-bar';
+      bar.setAttribute('role', 'region');
+      bar.setAttribute('aria-label', pt.tag);
+      bar.innerHTML = '<div class="container"><a class="promo-bar-link" href="torymus.html#promo-torymus">'
+        + '<span class="promo-bar-tag">' + pt.tag + '</span><span class="promo-bar-txt">' + pt.txt + '</span>'
+        + '<span class="promo-bar-more">' + pt.more + ' →</span></a>'
+        + '<button type="button" class="promo-bar-close" aria-label="' + pt.close + '">×</button></div>';
+      topSlot.parentNode.insertBefore(bar, topSlot);
+      bar.querySelector('.promo-bar-close').addEventListener('click', function () {
+        bar.parentNode.removeChild(bar);
+        try { sessionStorage.setItem('oasis-promo-torymus-2026', '1'); } catch (e) {}
+      });
+    }
+    // Form contatti precompilato da ?promo=torymus
+    if (/[?&]promo=torymus\b/.test(location.search)) {
+      var fTipo = document.getElementById('f-tipo'), fMsg = document.getElementById('f-msg');
+      if (fTipo) fTipo.value = 'Torymus sinensis';
+      if (fMsg && !fMsg.value) fMsg.value = inEN
+        ? 'I would like to order … Torymus sinensis releases with the €50-per-release offer (valid until 31/12/2026). Chestnut grove location: …'
+        : 'Vorrei acquistare … lanci di Torymus sinensis con la promozione da 50 € a lancio (valida fino al 31/12/2026). Località del castagneto: …';
+    }
+
     // Marca current la voce di menu della pagina corrente
     var page = location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('nav a').forEach(function(a) {
