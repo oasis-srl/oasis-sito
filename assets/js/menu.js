@@ -329,8 +329,9 @@
         ? { lbl: 'Share', li: 'Share on LinkedIn', ig: 'Instagram', more: 'Share', copied: 'Link copied — paste it into Instagram or anywhere else', copiedShort: 'Link copied' }
         : { lbl: 'Condividi', li: 'Condividi su LinkedIn', ig: 'Instagram', more: 'Condividi', copied: 'Link copiato — incollalo su Instagram o dove preferisci', copiedShort: 'Link copiato' };
       var slug = function (t) {
-        return t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
-          .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 61).replace(/-[^-]*$/, '');
+        var x = t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+        return x.length > 60 ? x.slice(0, 61).replace(/-[^-]*$/, '') : x;
       };
       var baseUrl = location.href.split('#')[0].split('?')[0];
       var copyText = function (txt, done) {
