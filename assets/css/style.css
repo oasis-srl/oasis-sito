@@ -2888,3 +2888,16 @@ html { scroll-behavior: smooth; }
 .news-media.is-doc > a { display: block; width: 100%; }
 .news-media.is-doc img { display: block; width: 100%; height: auto; transition: transform .6s cubic-bezier(.2,.6,.2,1); }
 .news-item:hover .news-media.is-doc img { transform: scale(1.03); }
+
+/* News — pulsanti di condivisione (generati da menu.js) */
+.news-item[id] { scroll-margin-top: 120px; }
+.news-share { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--rule); }
+.news-share-lbl { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); margin-right: 4px; }
+.ns-btn { display: inline-flex; align-items: center; gap: 6px; font: 600 13px 'Inter', sans-serif; color: var(--ink); background: var(--paper-warm); border: 1px solid var(--rule); border-radius: 999px; padding: 6px 12px; cursor: pointer; text-decoration: none; transition: background .15s ease, color .15s ease, border-color .15s ease; }
+.ns-btn svg { width: 15px; height: 15px; fill: currentColor; }
+.ns-ig svg, .ns-more svg { fill: none; }
+.ns-li:hover { background: #0a66c2; border-color: #0a66c2; color: #fff; }
+.ns-ig:hover { background: #d62976; border-color: #d62976; color: #fff; }
+.ns-more:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.ns-msg { font-size: 13px; color: var(--accent-deep); }
+.news-item.is-target { box-shadow: 0 0 0 3px var(--sun), 0 22px 44px -20px rgba(29,77,62,.28); }

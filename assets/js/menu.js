@@ -323,6 +323,60 @@
     if (newsList) {
       var newsItems = [].slice.call(newsList.querySelectorAll('.news-item'));
 
+      // ---- Condivisione di ogni notizia (LinkedIn + condivisione del telefono / copia link) ----
+      // Ogni notizia riceve un id ricavato dal titolo, così il link porta proprio a quella notizia.
+      var shT = inEN
+        ? { lbl: 'Share', li: 'Share on LinkedIn', ig: 'Instagram', more: 'Share', copied: 'Link copied — paste it into Instagram or anywhere else', copiedShort: 'Link copied' }
+        : { lbl: 'Condividi', li: 'Condividi su LinkedIn', ig: 'Instagram', more: 'Condividi', copied: 'Link copiato — incollalo su Instagram o dove preferisci', copiedShort: 'Link copiato' };
+      var slug = function (t) {
+        return t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+          .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 61).replace(/-[^-]*$/, '');
+      };
+      var baseUrl = location.href.split('#')[0].split('?')[0];
+      var copyText = function (txt, done) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(txt).then(done, function () { window.prompt('', txt); });
+        } else { window.prompt('', txt); }
+      };
+      var icoLI = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>';
+      var icoIG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>';
+      var icoSH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12v7a2 2 0 002 2h12a2 2 0 002-2v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg>';
+      newsItems.forEach(function (it) {
+        var h = it.querySelector('h3');
+        var content = it.querySelector('.news-content');
+        if (!h || !content) return;
+        if (!it.id) it.id = 'news-' + slug(h.textContent);
+        var url = baseUrl + '#' + it.id;
+        var title = h.textContent.trim();
+        var box = document.createElement('div');
+        box.className = 'news-share';
+        box.innerHTML = '<span class="news-share-lbl">' + shT.lbl + '</span>'
+          + '<a class="ns-btn ns-li" target="_blank" rel="noopener" href="https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url) + '" aria-label="' + shT.li + '" title="' + shT.li + '">' + icoLI + '<span>LinkedIn</span></a>'
+          + '<button type="button" class="ns-btn ns-ig" aria-label="' + shT.ig + '" title="' + shT.ig + '">' + icoIG + '<span>Instagram</span></button>'
+          + (navigator.share ? '<button type="button" class="ns-btn ns-more" aria-label="' + shT.more + '" title="' + shT.more + '">' + icoSH + '<span>' + shT.more + '</span></button>' : '')
+          + '<span class="ns-msg" role="status" aria-live="polite"></span>';
+        content.appendChild(box);
+        var msg = box.querySelector('.ns-msg');
+        var flash = function (t) { msg.textContent = t; clearTimeout(msg._t); msg._t = setTimeout(function () { msg.textContent = ''; }, 4000); };
+        var nativeShare = function () { return navigator.share({ title: title, text: title + ' — OASIS S.r.l.', url: url }).catch(function () {}); };
+        // Instagram non ha un link di condivisione web: sul telefono si apre il menu di condivisione
+        // (dove compare Instagram); sul computer si copia il link.
+        box.querySelector('.ns-ig').addEventListener('click', function () {
+          if (navigator.share && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) nativeShare();
+          else copyText(url, function () { flash(shT.copied); });
+        });
+        var more = box.querySelector('.ns-more');
+        if (more) more.addEventListener('click', nativeShare);
+      });
+      // apertura diretta di una notizia condivisa (gli id sono creati via JS, quindi lo scroll va fatto qui)
+      if (location.hash) {
+        var target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+        if (target && target.classList.contains('news-item')) {
+          target.classList.add('in', 'is-target');
+          setTimeout(function () { target.scrollIntoView({ block: 'start' }); }, 60);
+        }
+      }
+
       // comparsa in scorrimento (solo con JS; senza JS il CSS lascia tutto visibile)
       document.documentElement.classList.add('js-reveal');
       newsItems.forEach(function (it) { it.classList.add('reveal'); });
