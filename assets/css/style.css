@@ -2904,3 +2904,4 @@ html { scroll-behavior: smooth; }
 
 /* Scheda progetto con più immagini impilate (es. @thena: poster + targa) */
 .project-image.is-stack { background: #fff; padding: 16px; flex-direction: column; justify-content: center; gap: 16px; aspect-ratio: auto; min-height: 0; }
+.ns-msg a { color: var(--accent-deep); font-weight: 600; }

@@ -326,8 +326,8 @@
       // ---- Condivisione delle notizie con pagina dedicata (LinkedIn + condivisione del telefono / copia link) ----
       // Ogni notizia riceve comunque un id dal titolo (link diretto news.html#news-...).
       var shT = inEN
-        ? { lbl: 'Share', li: 'Share on LinkedIn', ig: 'Instagram', more: 'Share', copied: 'Link copied — paste it into Instagram or anywhere else', copiedShort: 'Link copied' }
-        : { lbl: 'Condividi', li: 'Condividi su LinkedIn', ig: 'Instagram', more: 'Condividi', copied: 'Link copiato — incollalo su Instagram o dove preferisci', copiedShort: 'Link copiato' };
+        ? { lbl: 'Share', li: 'Share on LinkedIn', ig: 'Instagram', more: 'Share', copied: 'Link copied — paste it into Instagram or anywhere else', copiedShort: 'Link copied', igSticker: 'Link copied: add it to your story with the “Link” sticker', igDesk: 'Link copied. For Instagram, download the image:', igStory: 'story', igPostLbl: 'post' }
+        : { lbl: 'Condividi', li: 'Condividi su LinkedIn', ig: 'Instagram', more: 'Condividi', copied: 'Link copiato — incollalo su Instagram o dove preferisci', copiedShort: 'Link copiato', igSticker: 'Link copiato: aggiungilo alla storia con lo sticker «Link»', igDesk: 'Link copiato. Per Instagram scarica l\u2019immagine:', igStory: 'storia', igPostLbl: 'post' };
       var slug = function (t) {
         var x = t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
           .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
@@ -366,9 +366,32 @@
         var nativeShare = function () { return navigator.share({ title: title, text: title + ' — OASIS S.r.l.', url: url }).catch(function () {}); };
         // Instagram non ha un link di condivisione web: sul telefono si apre il menu di condivisione
         // (dove compare Instagram); sul computer si copia il link.
+        // Con data-share-img (immagine in formato storia) sul telefono si condivide l'IMMAGINE:
+        // Instagram propone Storia / Post / Messaggi; il link viene copiato per lo sticker «Link».
+        // L'immagine è precaricata, così la condivisione parte subito al tocco (richiesto da iOS).
+        var igImg = it.getAttribute('data-share-img'), igPost = it.getAttribute('data-share-img-post'), igFile = null;
+        var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        if (igImg && isMobile && window.fetch && window.File && navigator.canShare) {
+          fetch(igImg).then(function (r) { return r.blob(); }).then(function (b) {
+            var f = new File([b], igImg.split('/').pop(), { type: b.type || 'image/jpeg' });
+            if (navigator.canShare({ files: [f] })) igFile = f;
+          }).catch(function () {});
+        }
         box.querySelector('.ns-ig').addEventListener('click', function () {
-          if (navigator.share && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) nativeShare();
-          else copyText(url, function () { flash(shT.copied); });
+          if (igFile) {
+            copyText(url, function () {});
+            navigator.share({ files: [igFile] }).then(function () { flash(shT.igSticker); }).catch(function () {});
+          } else if (navigator.share && isMobile) {
+            nativeShare();
+          } else {
+            copyText(url, function () {
+              if (igImg) {
+                msg.innerHTML = shT.igDesk + ' <a href="' + igImg + '" download>' + shT.igStory + '</a>'
+                  + (igPost ? ' · <a href="' + igPost + '" download>' + shT.igPostLbl + '</a>' : '');
+                clearTimeout(msg._t); msg._t = setTimeout(function () { msg.textContent = ''; }, 15000);
+              } else { flash(shT.copied); }
+            });
+          }
         });
         var more = box.querySelector('.ns-more');
         if (more) more.addEventListener('click', nativeShare);
